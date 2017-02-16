@@ -6,39 +6,40 @@ using UnityEngine.UI;
 public class MainMenuButtons : MonoBehaviour
 {
 
-    public Canvas agePanel, naughtyPanel, groupTypePanel;
-
-    bool isKids, isTeens, isAdults, isCouples, isNaughty;
+    public Canvas agePanel, naughtyPanel, groupTypePanel, truthDarePanel;
+    public Text truthDareStatement;
 
     private void Start()
     {
-        isKids = false;
-        isTeens = false;
-        isAdults = false;
-        isCouples = false;
-        isNaughty = false;
+        QuestionSelection.isKids = false;
+        QuestionSelection.isTeens = false;
+        QuestionSelection.isAdults = false;
+        QuestionSelection.isCouples = false;
+        QuestionSelection.isNaughty = false;
 
         agePanel.enabled = true;
         naughtyPanel.enabled = false;
         groupTypePanel.enabled = false;
+        truthDarePanel.enabled = false;
     }
 
     public void isKidsButton()
     {
-        isKids = true;
-        isTeens = false;
-        isAdults = false;
-        isCouples = false;
-        isNaughty = false;
+        QuestionSelection.isKids = true;
+        QuestionSelection.isTeens = false;
+        QuestionSelection.isAdults = false;
+        QuestionSelection.isCouples = false;
+        QuestionSelection.isNaughty = false;
 
         agePanel.enabled = false;
+        truthDarePanel.enabled = true;
     }
 
     public void isTeensButton()
     {
-        isKids = false;
-        isTeens = true;
-        isAdults = false;
+        QuestionSelection.isKids = false;
+        QuestionSelection.isTeens = true;
+        QuestionSelection.isAdults = false;
 
         agePanel.enabled = false;
         naughtyPanel.enabled = true;
@@ -46,9 +47,9 @@ public class MainMenuButtons : MonoBehaviour
 
     public void isAdultsButton()
     {
-        isKids = false;
-        isTeens = false;
-        isAdults = true;
+        QuestionSelection.isKids = false;
+        QuestionSelection.isTeens = false;
+        QuestionSelection.isAdults = true;
 
         agePanel.enabled = false;
         naughtyPanel.enabled = true;
@@ -56,7 +57,7 @@ public class MainMenuButtons : MonoBehaviour
 
     public void isNaugtyButton(bool naughty)
     {
-        isNaughty = naughty;
+        QuestionSelection.isNaughty = naughty;
 
         naughtyPanel.enabled = false;
         groupTypePanel.enabled = true;
@@ -64,8 +65,9 @@ public class MainMenuButtons : MonoBehaviour
 
     public void isCouplesButton(bool couples)
     {
-        isCouples = couples;
+        QuestionSelection.isCouples = couples;
 
         groupTypePanel.enabled = false;
+        truthDarePanel.enabled = true;
     }
 }
