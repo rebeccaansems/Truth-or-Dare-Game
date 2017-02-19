@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class MainMenuButtons : MonoBehaviour
 {
 
-    public Canvas agePanel, naughtyPanel, groupTypePanel, truthDarePanel;
+    public Canvas agePanel, naughtyPanel, truthDarePanel;
     public Text truthDareStatement;
+    public QuestionSelection qs;
 
     private void Start()
     {
@@ -19,7 +20,6 @@ public class MainMenuButtons : MonoBehaviour
 
         agePanel.enabled = true;
         naughtyPanel.enabled = false;
-        groupTypePanel.enabled = false;
         truthDarePanel.enabled = false;
     }
 
@@ -33,6 +33,7 @@ public class MainMenuButtons : MonoBehaviour
 
         agePanel.enabled = false;
         truthDarePanel.enabled = true;
+        qs.truthSelected();
     }
 
     public void isTeensButton()
@@ -60,14 +61,8 @@ public class MainMenuButtons : MonoBehaviour
         QuestionSelection.isNaughty = naughty;
 
         naughtyPanel.enabled = false;
-        groupTypePanel.enabled = true;
-    }
-
-    public void isCouplesButton(bool couples)
-    {
-        QuestionSelection.isCouples = couples;
-
-        groupTypePanel.enabled = false;
         truthDarePanel.enabled = true;
+
+        qs.truthSelected();
     }
 }

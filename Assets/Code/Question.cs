@@ -8,5 +8,5 @@ public class Question
 {
     public string Statement;
     public bool isDare;
-    public bool Kids, Teens, Adults, Couples, Naughty;
+    public bool Kids, Teens, Adults, Naughty;
 }
