@@ -7,11 +7,26 @@ public class QuestionSelection : MonoBehaviour
 {
     public static bool isKids, isTeens, isAdults, isCouples, isNaughty;
     public Text chosenStatement;
+    public UITransistion truthDareTrans;
 
     static int lastTruthIndex = 0, lastDareIndex = 0;
-
-    public void truthSelected()
+    
+    public void truthSelected(bool withTransTime)
     {
+        if (withTransTime)
+        {
+            truthDareTrans.TransOutQuestion();
+        }
+        StartCoroutine(truthQuestionSelected(withTransTime));
+    }
+
+    IEnumerator truthQuestionSelected(bool withTransTime)
+    {
+        if (withTransTime)
+        {
+            yield return new WaitForSeconds(0.8f);
+        }
+
         Question questionChosen;
         List<Question> currentQuestionList;
 
@@ -36,13 +51,18 @@ public class QuestionSelection : MonoBehaviour
             if (questionChosen.isDare == false && (questionChosen.Naughty == isNaughty || isNaughty))
             {
                 chosenStatement.text = questionChosen.Statement;
-                return;
+                break;
             }
 
             if (lastTruthIndex >= currentQuestionList.Count)
             {
                 lastTruthIndex = 0;
             }
+        }
+
+        if (withTransTime)
+        {
+            truthDareTrans.TransInQuestion();
         }
     }
 
@@ -86,7 +106,7 @@ public class QuestionSelection : MonoBehaviour
     {
         if (Random.Range(0, 2) == 0)
         {
-            truthSelected();
+            truthSelected(true);
         }
         else
         {
