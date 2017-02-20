@@ -8,8 +8,11 @@ public class QuestionSelection : MonoBehaviour
     public static bool isKids, isTeens, isAdults, isCouples, isNaughty;
     public Text chosenStatement;
     public UITransistion truthDareTrans;
+    public Outline outline;
 
     static int lastTruthIndex = 0, lastDareIndex = 0;
+
+    Color dareColor = new Color32(204, 51, 63, 255), truthColor = new Color32(237, 201, 81, 255);
     
     public void truthSelected(bool withTransTime)
     {
@@ -24,11 +27,12 @@ public class QuestionSelection : MonoBehaviour
     {
         if (withTransTime)
         {
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.5f);
         }
 
         Question questionChosen;
         List<Question> currentQuestionList;
+        outline.effectColor = truthColor;
 
         if (isAdults)
         {
@@ -66,10 +70,25 @@ public class QuestionSelection : MonoBehaviour
         }
     }
 
-    public void dareSelected()
+    public void dareSelected(bool withTransTime)
     {
+        if (withTransTime)
+        {
+            truthDareTrans.TransOutQuestion();
+        }
+        StartCoroutine(dareQuestionSelected(withTransTime));
+    }
+
+    IEnumerator dareQuestionSelected(bool withTransTime)
+    {
+        if (withTransTime)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+
         Question questionChosen;
         List<Question> currentQuestionList;
+        outline.effectColor = dareColor;
 
         if (isAdults)
         {
@@ -92,13 +111,18 @@ public class QuestionSelection : MonoBehaviour
             if (questionChosen.isDare == true && (questionChosen.Naughty == isNaughty || isNaughty))
             {
                 chosenStatement.text = questionChosen.Statement;
-                return;
+                break;
             }
 
             if (lastDareIndex >= currentQuestionList.Count)
             {
                 lastDareIndex = 0;
             }
+        }
+
+        if (withTransTime)
+        {
+            truthDareTrans.TransInQuestion();
         }
     }
 
@@ -110,7 +134,7 @@ public class QuestionSelection : MonoBehaviour
         }
         else
         {
-            dareSelected();
+            dareSelected(true);
         }
 
     }
