@@ -6,9 +6,9 @@ public class UITransistion : MonoBehaviour
 {
     private Animator anim;
 
-    void Start()
+    void Awake()
     {
-        anim = GetComponent<Animator>();
+        anim = this.GetComponent<Animator>();
     }
 
     public void TransIn()

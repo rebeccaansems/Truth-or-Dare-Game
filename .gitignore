@@ -79,3 +79,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+Assets/Code/Advertisements.cs
+Assets/Code/Advertisements.cs.meta

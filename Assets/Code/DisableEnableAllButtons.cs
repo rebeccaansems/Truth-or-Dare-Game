@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine; 
+using UnityEngine;
 using UnityEngine.UI;
 
-public class DisableEnableAllButtons : MonoBehaviour {
+public class DisableEnableAllButtons : MonoBehaviour
+{
 
     public bool buttonsAreEnabled;
 
@@ -16,7 +17,7 @@ public class DisableEnableAllButtons : MonoBehaviour {
 
     private void Update()
     {
-        if(buttonsAreEnabled != buttons[0].interactable)
+        if (buttonsAreEnabled != buttons[0].interactable)
         {
             if (buttonsAreEnabled)
             {
@@ -31,9 +32,9 @@ public class DisableEnableAllButtons : MonoBehaviour {
 
     public void EnableAllButtons()
     {
-        for(int i=0; i< buttons.Length; i++)
+        for (int i = 0; i < buttons.Length; i++)
         {
-                buttons[i].interactable = true;
+            buttons[i].interactable = true;
         }
     }
 
