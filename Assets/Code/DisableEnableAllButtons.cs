@@ -8,6 +8,7 @@ public class DisableEnableAllButtons : MonoBehaviour
 
     public bool buttonsAreEnabled;
 
+    Color[] colors;
     Button[] buttons;
 
     private void Start()

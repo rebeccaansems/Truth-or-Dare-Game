@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 1711cc55dadd40b41b339ede7be45547
-timeCreated: 1487996446
+guid: f333c6646f4bc1d4ca16f81adc8b657b
+timeCreated: 1488145622
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -9,12 +9,10 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Built Titling
+  fontName: Bebas Neue
   fontNames:
-  - Built Titling
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: 08517b711748d5246be931fb3a5f78f2, type: 3}
-  - {fileID: 12800000, guid: 9c6498a7e63fe7246843592806081525, type: 3}
+  - Bebas Neue
+  fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
