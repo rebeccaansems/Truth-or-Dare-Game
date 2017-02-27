@@ -12,6 +12,7 @@ public class QuestionDatabase : MonoBehaviour
     public static List<Question> kidsQuestions = new List<Question>();
     public static List<Question> teensQuestions = new List<Question>();
     public static List<Question> adultsQuestions = new List<Question>();
+    public static List<Question> customQuestions = new List<Question>();
 
     void Start()
     {

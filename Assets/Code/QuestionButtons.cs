@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuButtons : MonoBehaviour
+public class QuestionButtons : MonoBehaviour
 {
     public Canvas agePanel, naughtyPanel, truthDarePanel;
     public Text truthDareStatement;
