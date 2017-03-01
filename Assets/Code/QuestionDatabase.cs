@@ -18,26 +18,28 @@ public class QuestionDatabase : MonoBehaviour
     {
         questionsString = questionsJSON.text;
         List<string> questions = questionsString.Split('}').ToList<string>();
-        for (int i = 0; i < questions.Count-1; i++)
+        for (int i = 0; i < questions.Count - 1; i++)
         {
             questions[i] += "}";
             Question question = JsonUtility.FromJson<Question>(questions[i]);
 
-            if (question.Adults)
+            if (question.isAdults)
             {
                 adultsQuestions.Add(question);
             }
 
-            if (question.Teens)
+            if (question.isTeens)
             {
                 teensQuestions.Add(question);
             }
 
-            if (question.Kids)
+            if (question.isKids)
             {
                 kidsQuestions.Add(question);
             }
         }
+
+        LoadCustomQuestions();
 
         kidsQuestions = Fisher_Yates_Shuffle(kidsQuestions);
         teensQuestions = Fisher_Yates_Shuffle(teensQuestions);
@@ -59,4 +61,54 @@ public class QuestionDatabase : MonoBehaviour
         }
         return aList;
     }
+
+    void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteAll();
+        for (int i = 0; i < customQuestions.Count; i++)
+        {
+            PlayerPrefs.SetString("CustomQuestion_" + i + "_Statement", customQuestions[i].Statement);
+
+            PlayerPrefs.SetInt("CustomQuestion_" + i + "_IsDare", customQuestions[i].isDare ? 0 : 1);
+
+            PlayerPrefs.SetInt("CustomQuestion_" + i + "_IsNaughty", customQuestions[i].isNaughty ? 0 : 1);
+            PlayerPrefs.SetInt("CustomQuestion_" + i + "_IsKids", customQuestions[i].isKids ? 0 : 1);
+            PlayerPrefs.SetInt("CustomQuestion_" + i + "_IsTeens", customQuestions[i].isTeens ? 0 : 1);
+            PlayerPrefs.SetInt("CustomQuestion_" + i + "_IsAdults", customQuestions[i].isAdults ? 0 : 1);
+        }
+    }
+
+    void LoadCustomQuestions()
+    {
+        int i = 0;
+        while (PlayerPrefs.HasKey("CustomQuestion_" + i + "_Statement"))
+        {
+            customQuestions.Add(new Question()
+            {
+                Statement = PlayerPrefs.GetString("CustomQuestion_" + i + "_Statement"),
+                isDare = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsDare") == 0,
+                isNaughty = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsNaughty") == 0,
+                isKids = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsKids") == 0,
+                isTeens = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsTeens") == 0,
+                isAdults = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsAdults") == 0
+            });
+
+        if (customQuestions[i].isAdults)
+        {
+            adultsQuestions.Add(customQuestions[i]);
+        }
+
+        if (customQuestions[i].isTeens)
+        {
+            teensQuestions.Add(customQuestions[i]);
+        }
+
+        if (customQuestions[i].isKids)
+        {
+            kidsQuestions.Add(customQuestions[i]);
+        }
+
+        i++;
+    }
+}
 }

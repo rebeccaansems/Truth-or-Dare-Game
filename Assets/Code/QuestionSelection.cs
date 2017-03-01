@@ -52,7 +52,7 @@ public class QuestionSelection : MonoBehaviour
             questionChosen = currentQuestionList[lastTruthIndex];
             lastTruthIndex++;
 
-            if (questionChosen.isDare == false && (questionChosen.Naughty == isNaughty || isNaughty))
+            if (questionChosen.isDare == false && (questionChosen.isNaughty == isNaughty || isNaughty))
             {
                 chosenStatement.text = questionChosen.Statement;
                 break;
@@ -108,7 +108,7 @@ public class QuestionSelection : MonoBehaviour
             questionChosen = currentQuestionList[lastDareIndex];
             lastDareIndex++;
 
-            if (questionChosen.isDare == true && (questionChosen.Naughty == isNaughty || isNaughty))
+            if (questionChosen.isDare == true && (questionChosen.isNaughty == isNaughty || isNaughty))
             {
                 chosenStatement.text = questionChosen.Statement;
                 break;

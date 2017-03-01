@@ -6,17 +6,36 @@ using UnityEngine.UI;
 public class PopulateEditorQuestion : MonoBehaviour
 {
     public InputField statementText;
-    public Toggle isKids, isTeens, isAdults, isNice, isNaughty;
-    public Text isTruthOrDare;
+    public Toggle isKids, isTeens, isAdults;
+    public Text isTruthOrDare, isNaughty;
     public Button removeQuestion;
 
-    void Start()
+    public void TruthOrDareButton()
     {
-
+        if (isTruthOrDare.text.Equals("Truth"))
+        {
+            isTruthOrDare.text = "Dare";
+        }
+        else
+        {
+            isTruthOrDare.text = "Truth";
+        }
     }
-    
-    void Update()
-    {
 
+    public void NaughtyOrNiceButton()
+    {
+        if (isNaughty.text.Equals("Naughty"))
+        {
+            isNaughty.text = "Nice";
+        }
+        else
+        {
+            isNaughty.text = "Naughty";
+        }
+    }
+
+    public void DeleteQuestion()
+    {
+        Destroy(this.gameObject);
     }
 }
