@@ -45,8 +45,53 @@ public class QuestionDatabase : MonoBehaviour
         teensQuestions = Fisher_Yates_Shuffle(teensQuestions);
         adultsQuestions = Fisher_Yates_Shuffle(adultsQuestions);
     }
+    
+    void LoadCustomQuestions()
+    {
+        int i = 0;
 
-    public static List<Question> Fisher_Yates_Shuffle(List<Question> aList)
+        while (PlayerPrefs.HasKey("CustomQuestion_" + i + "_Statement"))
+        {
+            customQuestions.Add(new Question()
+            {
+                Statement = PlayerPrefs.GetString("CustomQuestion_" + i + "_Statement"),
+                isDare = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsDare") == 0,
+                isNaughty = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsNaughty") == 0,
+                isKids = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsKids") == 0,
+                isTeens = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsTeens") == 0,
+                isAdults = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsAdults") == 0
+            });
+
+            if (customQuestions[i].isAdults)
+            {
+                adultsQuestions.Add(customQuestions[i]);
+            }
+
+            if (customQuestions[i].isTeens)
+            {
+                teensQuestions.Add(customQuestions[i]);
+            }
+
+            if (customQuestions[i].isKids)
+            {
+                kidsQuestions.Add(customQuestions[i]);
+            }
+
+            i++;
+        }
+    }
+
+    public void ReloadQuestions()
+    {
+        kidsQuestions.Clear();
+        teensQuestions.Clear();
+        adultsQuestions.Clear();
+        
+        Start();
+        LoadCustomQuestions();
+    }
+
+    List<Question> Fisher_Yates_Shuffle(List<Question> aList)
     {
         System.Random _random = new System.Random();
         Question myGO;
@@ -77,38 +122,4 @@ public class QuestionDatabase : MonoBehaviour
             PlayerPrefs.SetInt("CustomQuestion_" + i + "_IsAdults", customQuestions[i].isAdults ? 0 : 1);
         }
     }
-
-    void LoadCustomQuestions()
-    {
-        int i = 0;
-        while (PlayerPrefs.HasKey("CustomQuestion_" + i + "_Statement"))
-        {
-            customQuestions.Add(new Question()
-            {
-                Statement = PlayerPrefs.GetString("CustomQuestion_" + i + "_Statement"),
-                isDare = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsDare") == 0,
-                isNaughty = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsNaughty") == 0,
-                isKids = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsKids") == 0,
-                isTeens = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsTeens") == 0,
-                isAdults = PlayerPrefs.GetInt("CustomQuestion_" + i + "_IsAdults") == 0
-            });
-
-        if (customQuestions[i].isAdults)
-        {
-            adultsQuestions.Add(customQuestions[i]);
-        }
-
-        if (customQuestions[i].isTeens)
-        {
-            teensQuestions.Add(customQuestions[i]);
-        }
-
-        if (customQuestions[i].isKids)
-        {
-            kidsQuestions.Add(customQuestions[i]);
-        }
-
-        i++;
-    }
-}
 }

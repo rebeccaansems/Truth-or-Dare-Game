@@ -13,4 +13,12 @@ public class PopulateEditorQuestion : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+
+    private void Update()
+    {
+        if(!isKids.isOn && !isTeens.isOn && !isAdults.isOn)
+        {
+            isAdults.isOn = true;
+        }
+    }
 }

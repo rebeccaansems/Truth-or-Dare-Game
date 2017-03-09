@@ -6,9 +6,10 @@ public class PopulateQuestionScroll : MonoBehaviour
 {
     public GameObject scrollRect;
     public GameObject truthDareEditorStatement;
+    public QuestionDatabase questionDatabase;
 
     PopulateEditorQuestion question;
-
+    
     public void LoadQuestions()
     {
         for (int i = 0; i < QuestionDatabase.customQuestions.Count; i++)
@@ -56,10 +57,11 @@ public class PopulateQuestionScroll : MonoBehaviour
                     QuestionDatabase.customQuestions.Add(new Question()
                     {
                         Statement = currQuestion.statementText.text,
-                        isDare = currQuestion.isDare,
-                        isKids = currQuestion.isKids,
-                        isTeens = currQuestion.isTeens,
-                        isNaughty = currQuestion.isNaughty
+                        isKids = currQuestion.isKids.isOn,
+                        isTeens = currQuestion.isTeens.isOn,
+                        isAdults = currQuestion.isAdults.isOn,
+                        isDare = currQuestion.isDare.isOn,
+                        isNaughty = currQuestion.isNaughty.isOn
                     });
 
                 }
