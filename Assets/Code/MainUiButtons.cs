@@ -37,7 +37,7 @@ public class MainUiButtons : MonoBehaviour
 
     public void ReturnToMainGame()
     {
-        scrollPanel.transform.position = new Vector3(scrollPanel.transform.position.x, 1920-210, 0);
+        scrollPanel.transform.position = new Vector3(scrollPanel.transform.position.x, 1920-124, 0);
 
         optionsCanvas.SetActive(false);
         editorCanvas.SetActive(false);

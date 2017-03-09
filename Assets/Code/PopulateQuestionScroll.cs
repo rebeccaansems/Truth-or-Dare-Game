@@ -18,12 +18,12 @@ public class PopulateQuestionScroll : MonoBehaviour
             question = newQuestion.GetComponent<PopulateEditorQuestion>();
 
             question.statementText.text = QuestionDatabase.customQuestions[i].Statement;
-            question.isNaughty.text = QuestionDatabase.customQuestions[i].isNaughty ? "Naughty" : "Nice";
-            question.isTruthOrDare.text = QuestionDatabase.customQuestions[i].isDare ? "Dare" : "Truth";
 
             question.isAdults.isOn = QuestionDatabase.customQuestions[i].isAdults;
             question.isTeens.isOn = QuestionDatabase.customQuestions[i].isTeens;
             question.isKids.isOn = QuestionDatabase.customQuestions[i].isKids;
+            question.isNaughty.isOn = QuestionDatabase.customQuestions[i].isNaughty;
+            question.isDare.isOn = QuestionDatabase.customQuestions[i].isDare;
         }
     }
 
@@ -53,13 +53,10 @@ public class PopulateQuestionScroll : MonoBehaviour
 
                 if (!questionIncluded)
                 {
-                    bool isTruthOrDare = currQuestion.isTruthOrDare.text.Equals("Dare");
-                    bool isNaughty = currQuestion.isNaughty.text.Equals("Naughty");
-
                     QuestionDatabase.customQuestions.Add(new Question()
                     {
                         Statement = currQuestion.statementText.text,
-                        isDare = isTruthOrDare,
+                        isDare = currQuestion.isDare,
                         isKids = currQuestion.isKids,
                         isTeens = currQuestion.isTeens,
                         isNaughty = currQuestion.isNaughty
