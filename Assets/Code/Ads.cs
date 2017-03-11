@@ -3,6 +3,8 @@ using UnityEngine.Advertisements;
 
 public class Ads : MonoBehaviour
 {
+
+    int questionsShown = 0;
     public void ShowAd()
     {
         if (!Advertisement.IsReady())
@@ -11,6 +13,10 @@ public class Ads : MonoBehaviour
             return;
         }
 
-        Advertisement.Show();
+        questionsShown++;
+        if (questionsShown%15 == 0)
+        {
+            Advertisement.Show();
+        }
     }
 }

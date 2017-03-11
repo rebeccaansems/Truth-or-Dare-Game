@@ -9,12 +9,13 @@ public class PopulateQuestionScroll : MonoBehaviour
     public QuestionDatabase questionDatabase;
 
     PopulateEditorQuestion question;
-    
+
     public void LoadQuestions()
     {
         for (int i = 0; i < QuestionDatabase.customQuestions.Count; i++)
         {
-            GameObject newQuestion = Instantiate(truthDareEditorStatement, scrollRect.transform);
+            GameObject newQuestion = Instantiate(truthDareEditorStatement, this.transform);
+            newQuestion.transform.parent = this.transform;
             newQuestion.transform.localScale = new Vector3(1, 1, 1);
             question = newQuestion.GetComponent<PopulateEditorQuestion>();
 
@@ -30,7 +31,8 @@ public class PopulateQuestionScroll : MonoBehaviour
 
     public void AddQuestion()
     {
-        GameObject newQuestion = Instantiate(truthDareEditorStatement, scrollRect.transform);
+        GameObject newQuestion = Instantiate(truthDareEditorStatement, this.transform);
+        newQuestion.transform.parent = this.transform;
         newQuestion.transform.localScale = new Vector3(1, 1, 1);
         newQuestion.transform.SetAsFirstSibling();
     }
@@ -38,7 +40,7 @@ public class PopulateQuestionScroll : MonoBehaviour
     public void SaveQuestions()
     {
         QuestionDatabase.customQuestions.Clear();
-        foreach (Transform question in scrollRect.transform)
+        foreach (Transform question in this.transform)
         {
             PopulateEditorQuestion currQuestion = question.GetComponent<PopulateEditorQuestion>();
             if (currQuestion.statementText.text != null && currQuestion.statementText.text != "" && currQuestion.statementText.text != " ")
