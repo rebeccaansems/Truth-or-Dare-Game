@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Advertisements;
 
 public class Ads : MonoBehaviour
@@ -12,20 +13,28 @@ public class Ads : MonoBehaviour
 #endif
     }
 
-
     int questionsShown = 0;
+
     public void ShowAd()
     {
-        if (!Advertisement.IsReady())
-        {
-            Debug.Log("Ads not ready for default placement");
-            return;
-        }
+        StartCoroutine("Check");
+    }
 
-        questionsShown++;
-        if (questionsShown % 15 == 0)
+    IEnumerator Check()
+    {
+        while (!Advertisement.isInitialized || !Advertisement.IsReady())
         {
-            Advertisement.Show();
+            yield return new WaitForSeconds(0.5f);
+        }
+        if (Advertisement.IsReady())
+        {
+
+            questionsShown++;
+            if (questionsShown % 10 == 0)
+            {
+                Advertisement.Show();
+                StopCoroutine("Check");
+            }
         }
     }
 }
