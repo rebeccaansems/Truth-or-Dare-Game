@@ -8,17 +8,19 @@ public class QuestionButtons : MonoBehaviour
     public Canvas agePanel, naughtyPanel, truthDarePanel;
     public Text truthDareStatement;
     public QuestionSelection qs;
-    public UITransistion ageTrans, naughtyTrans, truthDareTrans;
+    public UITransistion playGame, ageTrans, naughtyTrans, truthDareTrans;
 
-    private void Start()
+    public void StartGame()
     {
-        ageTrans.TransIn();
+        playGame.TransOut();
 
         QuestionSelection.isKids = false;
         QuestionSelection.isTeens = false;
         QuestionSelection.isAdults = false;
         QuestionSelection.isCouples = false;
         QuestionSelection.isNaughty = false;
+
+        ageTrans.TransIn();
     }
 
     public void isKidsButton()
