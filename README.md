@@ -12,6 +12,6 @@ Android - [https://play.google.com/store/apps/details?id=com.RebeccaAnsems.truth
 Blog Articles - [http://blog.rebeccaansems.com/tagged/Truth-or-dare](http://blog.rebeccaansems.com/tagged/Truth-or-dare)
 
 ## Screenshots
-![Alt text](https://i.imgur.com/bq43gwD.jpg "Optional title")
-![Alt text](https://i.imgur.com/NN4PXmP.jpg "Optional title")
-![Alt text](https://i.imgur.com/jUoxqbb.jpg "Optional title")
+![Alt text](https://i.imgur.com/bq43gwD.jpg "Example Question")
+![Alt text](https://i.imgur.com/NN4PXmP.jpg "Question Editor")
+![Alt text](https://i.imgur.com/jUoxqbb.jpg "Question Filter")
